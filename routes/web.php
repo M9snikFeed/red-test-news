@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
 Route::get('/', [NewsController::class, 'index'])->name('index');
 Route::get('/news', [NewsController::class, 'list'])->name('news.list');
 Route::get('/news/{item}', [NewsController::class, 'show'])->name('news.show');
-
 Route::get('city/{city}', function ($city) {
-    session('city', $city);
-
+    Request::session()->put('city', $city);
+    Request::session()->save();
     return redirect()->back();
-})->name('locale');
+})->name('city');
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

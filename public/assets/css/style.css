@@ -102,6 +102,13 @@ header > .container > .buttons > .search:hover > .search-line{
 header > .container > .buttons > .search:hover > .fas.fa-search{
     display: none;
 }
+header > .container > .buttons > .search:hover header > .container > .buttons > .profile {
+    display: none;
+}
+
+header > .container > .buttons > .profile{
+    display: inline-block;
+}
 
 @media(max-width:994px){
     header{
@@ -200,7 +207,7 @@ footer > .copyright{
 .news-list {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -5px;
+    margin: 0 -5px 46px;
 }
 .news-list > .news-item{
     margin: 12px 5px;

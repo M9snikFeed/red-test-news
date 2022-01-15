@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name',
+        'name_ru',
+    ];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

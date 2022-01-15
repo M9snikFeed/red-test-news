@@ -13,7 +13,7 @@ class CreateCitiesNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities_news', function (Blueprint $table) {
+        Schema::create('city_news', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('news_id');

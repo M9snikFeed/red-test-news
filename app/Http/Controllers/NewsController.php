@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 
 class NewsController extends Controller
 {
     function index(){
+        $city = Request::session()->get('city');
         $news = News::latest('created_at')->whereFavorites(true)->limit(6)->get();
-        return view('index', ['title' => 'Главная', 'news' => $news]);
+        $cityNews = News::latest('created_at')->ofCity($city)->limit(6)->get();
+        return view('index', ['title' => 'Главная', 'news' => $news, 'cityNews' => $cityNews]);
     }
 
     function list(){
@@ -35,6 +38,7 @@ class NewsController extends Controller
             [
                 'title' => 'Список новостей',
                 'item' => $item,
+                'cities'=> $item->cities,
                 'similar_news' => News::latest('created_at')->whereFavorites(true)->limit(6)->get(),
             ]);
     }

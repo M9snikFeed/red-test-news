@@ -18,8 +18,27 @@ class News extends Model
         'favorites'
     ];
 
-    public function cities()
+    /**
+     * belongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function cities(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(City::class);
+    }
+
+    /**
+     * @param $query
+     * @param array $genres
+     *
+     * @return mixed
+     */
+    public function scopeOfCity($query, string $city)
+    {
+        $query->with('cities')->whereHas('cities', function ($query) use ($city) {
+            $query->where('name', '=', $city);
+        });
+
+        return $query;
     }
 }

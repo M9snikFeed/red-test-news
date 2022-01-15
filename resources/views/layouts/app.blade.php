@@ -35,8 +35,33 @@
                     </a>
                     <i class="fas fa-search"></i>
                 </li>
+                @if (Route::has('login'))
+                    @auth
+                        <li class="profile" title="выйти из учетной записи">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('logout')"
+                                                 onclick="event.preventDefault();
+                                                 this.closest('form').submit();">
+                                    <i class="fas fa-user"></i>
+                                </x-dropdown-link>
+                            </form>
+                        </li>
+                    @else
+                        <li class="profile" title="авторизация">
+                            <a href="{{ route('login') }}"><i class="fas fa-user"></i></a>
+                        </li>
+                    @endauth
+                @endif
                 <li class="menu" id="menu_button">
                     <i class="fas fa-align-justify"></i>
+                </li>
+                <li class="nav-item">
+                    @if (Session::get('city') === 'moscow')
+                        <a class="nav-link" href="{{ route('city', ['city' => 'yekaterinburg']) }}">Москва</a>
+                    @else
+                        <a class="nav-link" href="{{ route('city', ['city' => 'moscow']) }}">Екатеринбург</a>
+                    @endif
                 </li>
             </ul>
         </div>
