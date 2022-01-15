@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [NewsController::class, 'index'])->name('index');
+Route::get('/news', [NewsController::class, 'list'])->name('news.list');
+Route::get('/news/{item}', [NewsController::class, 'show'])->name('news.show');
