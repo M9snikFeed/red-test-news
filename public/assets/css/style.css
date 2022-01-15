@@ -11,9 +11,6 @@ body {
 .wrapper {
 	position: relative;
 }
-.container{
-    margin: 0 2%;
-}
 main{
     min-height: 100%;
 }
@@ -63,6 +60,12 @@ header > .container > ul.buttons > li{
     display: inline;
     margin-right: 24px;
 }
+header > .container > ul.buttons > li > a{
+    display: inline;
+}
+header > .container > ul.links{
+    flex-grow: 1;
+}
 header > .container > ul.links > li.link{
     position: relative;
     float: left;
@@ -88,7 +91,6 @@ header > .container > ul.links > .link > .dropdown > li{
 header > .container > ul.links > .link.menu:hover .dropdown{
     display: block;
 }
-
 header > .container > .buttons > .search > .search-line {
     display: none;
 }
@@ -208,20 +210,25 @@ footer > .copyright{
     display: flex;
     flex-wrap: wrap;
     margin: 0 -5px 46px;
+    justify-content: space-around;
+
 }
 .news-list > .news-item{
     margin: 12px 5px;
+    flex-basis: 19%;
+
 }
 .news-list > .news-item > .poser > .image {
-    width: 236px;
-    height: auto;
+    object-fit: cover;
+    height: 234px;
+    width: auto;
 }
 .news-list > .news-item > .info,
 .news-list > .news-item > .more-block{
     text-align: center;
 }
-.news-list > .news-item > .info{
-    width: 231px;
+.news-list > .news-item > .info > h3{
+    margin-top: 8px;
 }
 .btn{
     display: inline-block;
