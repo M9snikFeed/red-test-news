@@ -28,10 +28,9 @@ Route::get('city/{city}', function ($city) {
     return redirect()->back();
 })->name('city');
 
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/news/favorite/add/{item}', [NewsController::class, 'add_favorite'])
+    ->name('news.favorite.add');
+Route::get('/news/favorite/remove/{item}', [NewsController::class, 'add_favorite'])
+    ->name('news.favorite.remove');
 
 require __DIR__.'/auth.php';

@@ -3,7 +3,12 @@
 @section('main')
     <main class="home-page">
         <div class="container">
-            <h2 class="mb-4">Рекомендуемые новости</h2>
+            @if(Auth::check())
+                <h2 class="mb-4">Изрбанные новости</h2>
+            @else
+                <h2 class="mb-4">Рекомендуемые новости</h2>
+            @endif
+
             <section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($news as $news_item)<div class="col">
                     <div class="card shadow-sm">
@@ -14,7 +19,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a type="button" href="{{route('news.show', ['item' => $news_item->id])}}" class="btn btn-sm btn-outline-secondary">Читать</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Добавить в избранное</button>
+                                    <a href="{{route('news.favorite.remove', ['item' => $news_item->id])}}" class="btn btn-sm btn-outline-secondary">Удалить из избранного</a>
                                 </div>
                             </div>
                         </div>
@@ -32,8 +37,8 @@
                             <p class="card-text">{{$news_item->description}}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a type="button" href="{{route('news.show', ['item' => $news_item->id])}}" class="btn btn-sm btn-outline-secondary">Читать</a>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Добавить в избранное</button>
+                                    <a href="{{route('news.show', ['item' => $news_item->id])}}" class="btn btn-sm btn-outline-secondary">Читать</a>
+                                    <a href="{{route('news.favorite.add', ['item' => $news_item->id])}}" class="btn btn-sm btn-outline-secondary">Добавить в избранное</a>
                                 </div>
                             </div>
                         </div>
