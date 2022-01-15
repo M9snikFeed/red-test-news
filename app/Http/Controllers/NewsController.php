@@ -13,15 +13,21 @@ class NewsController extends Controller
     }
 
     function list(){
+        $data = [
+            'title'=> 'Список новостей'
+        ];
+
         if($search = Request::input('search')){
             // самый простой и самый слабенький, но это же всё ещё поиск) ...
-            $news = News::where('title', 'LIKE', $search)->paginate(12);
+            $data['news'] = News::where('title', 'LIKE', $search)->paginate(12);
+            $data['title'] = 'поиск по новостям';
+            $data['search'] = true;
         }
         else{
-            $news = News::paginate(12);
+            $data['news'] = News::paginate(12);
         }
 
-        return view('news', ['news' => $news, 'title' => 'Список новостей']);
+        return view('news', $data);
     }
 
     function show(News $item){

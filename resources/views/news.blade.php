@@ -3,6 +3,12 @@
 @section('main')
     <main class="news-page">
         <div class="container">
+            @if($search ?? '')
+                <h2>Поиск</h2>
+                @if(!count($news))
+                    <h3>Записи не найдены</h3>
+                @endif
+            @endif
             <section class="news-list">
                 @foreach ($news as $news_item)
                     <div class="news-item">
