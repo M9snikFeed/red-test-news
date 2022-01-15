@@ -89,14 +89,18 @@ header > .container > ul.links > .link.menu:hover .dropdown{
     display: block;
 }
 
-header > .container > .search-line {
+header > .container > .buttons > .search > .search-line {
     display: none;
 }
-header > .container > .search-line > input{
+header > .container > .search-line > label > input{
     padding: 8px;
 }
-header > .container > .search-line.open {
+
+header > .container > .buttons > .search:hover > .search-line{
     display: block;
+}
+header > .container > .buttons > .search:hover > .fas.fa-search{
+    display: none;
 }
 
 @media(max-width:994px){

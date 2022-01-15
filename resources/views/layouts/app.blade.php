@@ -21,13 +21,18 @@
                 <li class="link"><a href="/">Главная</a></li>
                 <li class="link"><a href="/news">Новости</a></li>
             </ul>
-            <div class="search-line">
-                <label>
-                    <input type="text" placeholder="Поиск ..">
-                </label>
-            </div>
             <ul class="buttons">
                 <li class="search" title="Поиск...">
+                    <a class="search-line">
+                        <form action="/news" method="GET">
+                            <label class="search">
+                                <input name="search" type="text" placeholder="Поиск ..">
+                            </label>
+                            <button type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </a>
                     <i class="fas fa-search"></i>
                 </li>
                 <li class="menu" id="menu_button">
