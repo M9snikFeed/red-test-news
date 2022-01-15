@@ -17,4 +17,9 @@ class News extends Model
         'content',
         'favorites'
     ];
+
+    public function cities()
+    {
+        return $this->belongsToMany(City::class);
+    }
 }
