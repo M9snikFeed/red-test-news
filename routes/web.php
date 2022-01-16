@@ -30,7 +30,7 @@ Route::get('city/{city}', function ($city) {
 
 Route::get('/news/favorite/add/{item}', [NewsController::class, 'add_favorite'])
     ->name('news.favorite.add');
-Route::get('/news/favorite/remove/{item}', [NewsController::class, 'add_favorite'])
+Route::get('/news/favorite/remove/{item}', [NewsController::class, 'remove_favorite'])
     ->name('news.favorite.remove');
 
 require __DIR__.'/auth.php';

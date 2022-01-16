@@ -13,7 +13,7 @@
                 @foreach ($news as $news_item)
                     <div class="news-item">
                         <div class="poser">
-                            <img class="image" src="/assets/images/notFound.png" alt="">
+                            <img class="image" src="{{$news_item->poster}}" alt="">
                         </div>
                         <div class="info">
                             <h3 title="{{$news_item->description}}">{{$news_item->title}}</h3>

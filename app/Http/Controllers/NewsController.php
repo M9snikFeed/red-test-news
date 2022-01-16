@@ -21,6 +21,7 @@ class NewsController extends Controller
             $news = News::latest('created_at')->limit(6)->get();
         }
         $cityNews = News::latest('created_at')->ofCity($city)->limit(6)->get();
+
         return view('index', ['title' => 'Главная', 'news' => $news, 'cityNews' => $cityNews]);
     }
 
@@ -54,8 +55,9 @@ class NewsController extends Controller
             [
                 'title' => 'Список новостей',
                 'item' => $item,
-                'cities'=> $item->cities,
-                'similar_news' => News::latest('created_at')->limit(6)->get(),
+                'cities' => $item->cities,
+                'favorite' => $item->isFavorite(),
+                'similar_news' => News::latest('created_at')->limit(4)->get(),
             ]);
     }
 
@@ -80,7 +82,7 @@ class NewsController extends Controller
     function remove_favorite(News $item): \Illuminate\Http\RedirectResponse
     {
         $user = Auth::user();
-        $item->users()->distinct($user->id);
+        $item->users()->detach($user->id);
 
         return redirect()->back();
     }

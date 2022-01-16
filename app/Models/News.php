@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class News extends Model
 {
@@ -48,5 +49,23 @@ class News extends Model
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+
+    /**
+     * This feature determines if a post has been marked as a favorite by an authorized user.
+     *
+     * @return boolean
+     */
+    public function isFavorite(): bool
+    {
+        return (bool) Favorite::where('user_id', Auth::id())
+            ->where('news_id', $this->id)
+            ->first();
+    }
+
+    public function getPosterAttribute($poster): string
+    {
+        return config('app.url') . $poster;
     }
 }
